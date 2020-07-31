@@ -79,7 +79,6 @@ function getIngredients(drinkId) {
   })
     //Store selected drink from drinks array in an variable
     .then(function (result) {
-      let instruction;
       instruction = result.drinks[0].strInstructions;
       $(".ingredientsContainer").html(instruction);
     });
