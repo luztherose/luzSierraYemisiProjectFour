@@ -5,18 +5,13 @@ cocktailApp.urlSearchBar =
 
 $("form").on("submit", (event) => {
   event.preventDefault();
-  // store what user type in a variable
-  cocktailApp.userChoice = $("#userInput").val();
-  //Calling the making the ajax request function
-  cocktailApp.setSearchBar(cocktailApp.userChoice);
-  //console.log(cocktailApp.userChoice);
-  // clean input
-  setTimeout(() => {
-    $("#userInput").val("");
-  }, 1000);
+  cocktailApp.clearPreviousSearchResult();
+  cocktailApp.clearSearchError();
+  cocktailApp.performSearch();
 });
-// make an ajax request base in the user input
-cocktailApp.setSearchBar = function (userSelectedIngredient) {
+
+cocktailApp.performSearch = function () {
+  const userSelectedIngredient = $("#userInput").val();
   $.ajax({
     url: `${cocktailApp.urlSearchBar}${userSelectedIngredient}`,
     method: "GET",
@@ -25,12 +20,14 @@ cocktailApp.setSearchBar = function (userSelectedIngredient) {
     // create an empty array that will hold the drinks that will be display on the page
     const drinksToDisplay = [];
     const allDrinks = userChoiceResult.drinks;
-    // select up to  6 drinks  to be display on the page
+    // select up to  4 drinks  to be display on the page
     for (let i = 0; i < allDrinks.length && i < 4; i++) {
-      // populate empty array that will hold the drinks that will be display on the page
+    // populate empty array that will hold the drinks that will be display on the page
       drinksToDisplay.push(allDrinks[i]);
     }
     cocktailApp.displayDrinksGallery(drinksToDisplay);
+  }, () => {
+    cocktailApp.showNotFoundIngredient();
   });
 };
 cocktailApp.displayDrinksGallery = function (data) {
@@ -68,6 +65,20 @@ cocktailApp.displayDrinksGallery = function (data) {
         getIngredients(drinkId);
       });
   });
+};    
+
+cocktailApp.showNotFoundIngredient = function() {
+  const titleNotFound = $('<h2>').text('Not Found :(');
+  const paragraphNotFound = $('<p>').text('Try a new ingredient: 🍋 🍎 🍇 🍊 🍸');
+  const notFoundMessage = $('<div>').append(titleNotFound, paragraphNotFound);
+  $('.notFoundMessageContainer').removeClass('nonDisplay');
+  $('.notFoundMessageContainer').html(notFoundMessage);
+};
+cocktailApp.clearPreviousSearchResult = () => {
+  $('.galleryDrinksContainer').html("");
+};
+cocktailApp.clearSearchError = () => {
+  $('.notFoundMessageContainer').html("");
 };
 
 //make ajax call to end point using drinkID variable
