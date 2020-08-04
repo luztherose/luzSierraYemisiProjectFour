@@ -240,5 +240,5 @@ img {
 }
 
 .nonDisplay {
-  display: block;
+  display: none;
 }
