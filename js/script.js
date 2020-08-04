@@ -36,32 +36,29 @@ cocktailApp.displayDrinksGallery = function (data) {
   // look through each object in the drinksToDisplay  array
   data.forEach(function (drink) {
     const galleryImgList = $("<li>");
-    // recording drinkId in variable
     const drinkId = drink.idDrink;
-    // creating html button
-    const galleryImgButton = $(
-      `<button type="button" data-drink-id="${drinkId}">`
-    );
     const drinkImg = $("<img>").attr("src", drink.strDrinkThumb);
     drinkImg.attr(`'alt', ${drink.strDrink} cold drink`);
     const drinkName = $("<p>").text(drink.strDrink);
+    // creating html button
+    const galleryImgButton = $(
+      `<button class="imageButton" type="button" data-drink-id="${drinkId}">`
+    );
     // appending button inside list item to make image clickable
     const drinkContainer = galleryImgList.append(
       galleryImgButton.append(drinkImg, drinkName)
     );
-    console.log(galleryImgButton);
 
     cocktailApp.ulImgContainer.append(drinkContainer);
-
     $(".galleryDrinksContainer").html(cocktailApp.ulImgContainer);
     // adding img on click handler (this needs to be called AFTER adding to screen or else .click method will not work)
     // $(`[data-drink-id="${drinkId}"]`).on("click", function () {
     //   console.log("YAYYY CLICKY");
     // }); JQUERY IS NOT WORKING FOR THIS : (
-
     document
       .querySelector(`[data-drink-id="${drinkId}"]`)
       .addEventListener("click", function () {
+        // calling getIngredients function to display instructions to page
         getIngredients(drinkId);
       });
   });
@@ -87,10 +84,28 @@ function getIngredients(drinkId) {
     url: `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`,
     method: "GET",
     dataType: "json",
-  })
-    //Store selected drink from drinks array in an variable
-    .then(function (result) {
-      instruction = result.drinks[0].strInstructions;
-      $(".ingredientsContainer").html(instruction);
-    });
+  }).then(function (result) {
+    const drink = result.drinks[0];
+    const instructions = drink.strInstructions;
+    // clear results before new ingredients display
+    $(".ingredientsContainer").empty();
+    // loop through numbers 1-15 and add ingredients to list
+    for (let i = 1; i <= 15; i++) {
+      const ingredient = drink[`strIngredient${i}`];
+
+      console.log(ingredient);
+
+      // if that ingredient exists inside the drink
+      if (ingredient != null) {
+        // create an li everytime we need an ingredient
+        const instructionsLi = $("<li>");
+        instructionsLi.html(ingredient);
+        // have results display to screen in li
+        $(".ingredientsContainer").append(instructionsLi);
+      }
+    }
+
+    // display instructions to page
+    $(".instructionsContainer").html(instructions);
+  });
 }

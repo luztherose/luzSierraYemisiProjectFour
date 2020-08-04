@@ -235,6 +235,14 @@ html {
   overflow: hidden;
 }
 
+.imageButton {
+  border: none;
+  background: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
 img {
   display: block;
 }
