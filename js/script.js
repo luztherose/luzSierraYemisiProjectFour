@@ -125,19 +125,19 @@ const setRandomButton = function () {
     dataType: "json",
     method: "GET",
   }).then((results) => {
+    $(".galleryDrinksContainer").empty();
+    $(".ingredientsContainer").empty();
     // console.log(results);
     // store random drink instructions from array in an instructions variable
     const randomResults = results.drinks[0];
-
     const randomPictureContainer = randomResults.strDrinkThumb;
     const randomImage = $("<img>").attr("src", randomPictureContainer);
     console.log(randomImage);
     randomImage.attr("alt", "picture of cocktail");
-    $(".randomLuckyContainer").append(randomImage);
-
+    $(".galleryDrinksContainer").append(randomImage);
     const instructions = randomResults.strInstructions;
     const instructionsContainer = $("<p>").text(instructions);
-    $(".randomLuckyContainer").append(instructionsContainer);
+    $(".galleryDrinksContainer").append(instructionsContainer);
   });
 };
 
