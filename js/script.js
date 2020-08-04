@@ -16,19 +16,22 @@ cocktailApp.performSearch = function () {
     url: `${cocktailApp.urlSearchBar}${userSelectedIngredient}`,
     method: "GET",
     dataType: "json",
-  }).then((userChoiceResult) => {
-    // create an empty array that will hold the drinks that will be display on the page
-    const drinksToDisplay = [];
-    const allDrinks = userChoiceResult.drinks;
-    // select up to  4 drinks  to be display on the page
-    for (let i = 0; i < allDrinks.length && i < 4; i++) {
-    // populate empty array that will hold the drinks that will be display on the page
-      drinksToDisplay.push(allDrinks[i]);
+  }).then(
+    (userChoiceResult) => {
+      // create an empty array that will hold the drinks that will be display on the page
+      const drinksToDisplay = [];
+      const allDrinks = userChoiceResult.drinks;
+      // select up to  4 drinks  to be display on the page
+      for (let i = 0; i < allDrinks.length && i < 4; i++) {
+        // populate empty array that will hold the drinks that will be display on the page
+        drinksToDisplay.push(allDrinks[i]);
+      }
+      cocktailApp.displayDrinksGallery(drinksToDisplay);
+    },
+    () => {
+      cocktailApp.showNotFoundIngredient();
     }
-    cocktailApp.displayDrinksGallery(drinksToDisplay);
-  }, () => {
-    cocktailApp.showNotFoundIngredient();
-  });
+  );
 };
 cocktailApp.displayDrinksGallery = function (data) {
   // create an unorder list to hold the images
@@ -62,20 +65,22 @@ cocktailApp.displayDrinksGallery = function (data) {
         getIngredients(drinkId);
       });
   });
-};    
+};
 
-cocktailApp.showNotFoundIngredient = function() {
-  const titleNotFound = $('<h2>').text('Not Found :(');
-  const paragraphNotFound = $('<p>').text('Try a new ingredient: 🍋 🍎 🍇 🍊 🍸');
-  const notFoundMessage = $('<div>').append(titleNotFound, paragraphNotFound);
-  $('.notFoundMessageContainer').removeClass('nonDisplay');
-  $('.notFoundMessageContainer').html(notFoundMessage);
+cocktailApp.showNotFoundIngredient = function () {
+  const titleNotFound = $("<h2>").text("Not Found :(");
+  const paragraphNotFound = $("<p>").text(
+    "Try a new ingredient: 🍋 🍎 🍇 🍊 🍸"
+  );
+  const notFoundMessage = $("<div>").append(titleNotFound, paragraphNotFound);
+  $(".notFoundMessageContainer").removeClass("nonDisplay");
+  $(".notFoundMessageContainer").html(notFoundMessage);
 };
 cocktailApp.clearPreviousSearchResult = () => {
-  $('.galleryDrinksContainer').html("");
+  $(".galleryDrinksContainer").html("");
 };
 cocktailApp.clearSearchError = () => {
-  $('.notFoundMessageContainer').html("");
+  $(".notFoundMessageContainer").html("");
 };
 
 //make ajax call to end point using drinkID variable
@@ -110,45 +115,34 @@ function getIngredients(drinkId) {
   });
 }
 
+cocktailApp.urlRandomButton =
+  "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 
-// create app namespace to hold all methods
-const cocktailApp = {};
-cocktailApp.urlRandomButton = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+const setRandomButton = function () {
+  // make AJAX request
+  $.ajax({
+    url: cocktailApp.urlRandomButton,
+    dataType: "json",
+    method: "GET",
+  }).then((results) => {
+    // console.log(results);
+    // store random drink instructions from array in an instructions variable
+    const randomResults = results.drinks[0];
 
-const setRandomButton = function(){
-    // make AJAX request
-    $.ajax({
-        url: cocktailApp.urlRandomButton,
-        dataType: 'json',
-        method: 'GET'
-    }).then((results) => {
-        // console.log(results);
-        // store random drink instructions from array in an instructions variable
-        const randomResults = results.drinks[0];
+    const randomPictureContainer = randomResults.strDrinkThumb;
+    const randomImage = $("<img>").attr("src", randomPictureContainer);
+    console.log(randomImage);
+    randomImage.attr("alt", "picture of cocktail");
+    $(".randomLuckyContainer").append(randomImage);
 
-        
-        const randomPictureContainer = randomResults.strDrinkThumb;
-        const randomImage = $('<img>').attr('src', randomPictureContainer);
-        console.log(randomImage);
-        randomImage.attr('alt', 'picture of cocktail');
-        $('.randomLuckyContainer').append(randomImage);
-
-        const instructions = randomResults.strInstructions;
-        const instructionsContainer = $('<p>').text(instructions);
-        $('.randomLuckyContainer').append(instructionsContainer);
-        
-    })
-}
-
-
-
+    const instructions = randomResults.strInstructions;
+    const instructionsContainer = $("<p>").text(instructions);
+    $(".randomLuckyContainer").append(instructionsContainer);
+  });
+};
 
 // get user input
 // listen for click event to generate random drink
-$('button').on('click', function(){
-  
-setRandomButton();
-
-})
-
-
+$("button").on("click", function () {
+  setRandomButton();
+});
