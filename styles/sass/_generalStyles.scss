@@ -1,5 +1,24 @@
+
 .imageButton {
   border: none;
   background: none;
   appearance: none;
+}
+h1,
+h2,
+p,
+ul {
+    margin: 0;
+}
+.galleryDrinksContainer ul {
+    list-style: none;
+}
+img {
+  display:block;
+}
+.nonDisplay {
+  display: none;
+}
+a {
+  text-decoration: none;
 }

@@ -1,0 +1,14 @@
+footer {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px ;
+}
+footer {
+    a {
+        color:#333;
+        &:hover {
+            border-bottom: 1px solid #333;
+            color:navy;
+        }
+    }
+}

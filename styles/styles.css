@@ -243,10 +243,260 @@ html {
           appearance: none;
 }
 
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+.galleryDrinksContainer ul {
+  list-style: none;
+}
+
 img {
   display: block;
 }
 
 .nonDisplay {
   display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.description p {
+  width: 70%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 7rem;
+  padding: 40px;
+  font-family: "Pacifico", cursive;
+  line-height: 54px;
+  letter-spacing: 0.2rem;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+body {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  line-height: 25px;
+  letter-spacing: 0.2px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#FFC3A0), to(#FFAFBD));
+  background-image: linear-gradient(to right, #FFC3A0, #FFAFBD);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.firstSection {
+  margin-bottom: 50px;
+}
+
+form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 30px;
+}
+
+input[type="text"] {
+  width: 400px;
+  height: 40px;
+}
+
+input[type="submit"] {
+  padding: 6px 30px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: darkslateblue;
+  color: white;
+}
+
+::-webkit-input-placeholder {
+  font-size: 1.5rem;
+}
+
+:-ms-input-placeholder {
+  font-size: 1.5rem;
+}
+
+::-ms-input-placeholder {
+  font-size: 1.5rem;
+}
+
+::placeholder {
+  font-size: 1.5rem;
+}
+
+.randomButtonSection {
+  margin-bottom: 50px;
+}
+
+.randomLuckyText p {
+  font-size: 3rem;
+  padding-bottom: 20px;
+}
+
+.randomLuckyText button {
+  padding: 6px 30px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 0;
+  padding: 15px 25px;
+  margin-bottom: 20px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.randomLuckyText button:hover {
+  background-color: darkslateblue;
+  color: white;
+}
+
+.galleryDrinksContainer p {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding-bottom: 20px;
+}
+
+.galleryDrinksContainer li {
+  width: calc(100% / 2);
+}
+
+.galleryDrinksContainer img {
+  width: 80%;
+  padding-bottom: 10px;
+}
+
+.galleryDrinksContainer ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.gallerySection {
+  margin-top: 50px;
+}
+
+.ingredientsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  text-align: start;
+  margin-bottom: 20px;
+}
+
+.instructionsContainer {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  width: 70%;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+footer a {
+  color: #333;
+}
+
+footer a:hover {
+  border-bottom: 1px solid #333;
+  color: navy;
+}
+
+@media (max-width: 710px) {
+  body {
+    font-size: 1.8rem;
+  }
+  h1 {
+    font-size: 6rem;
+    line-height: 60px;
+  }
+  .randomLuckyText p {
+    font-size: 2.3rem;
+  }
+  form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  input[type='text'] {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    font-size: 1.6rem;
+  }
+  .description p {
+    width: 100%;
+  }
+  h1 {
+    font-size: 5rem;
+  }
+  .randomLuckyText p {
+    font-size: 2rem;
+  }
+  input[type='text'] {
+    width: 290px;
+  }
+  .galleryDrinksContainer ul {
+    padding: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .galleryDrinksContainer li {
+    width: 100%;
+  }
+  .galleryDrinksContainer img {
+    width: 100%;
+    padding-bottom: 10px;
+  }
+  .ingredientsContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .instructionsContainer {
+    width: 100%;
+  }
 }

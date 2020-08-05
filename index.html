@@ -1,67 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocktail Curator</title>
-    <link rel="stylesheet" href="styles/styles.css" />
-  </head>
-  <body>
-    <header>
-      <div>
-        <h1>Cocktail Curator</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi qui eum
-          perferendis ullam voluptatem dolorem commodi magni voluptatum aliquid!
-          Saepe perferendis cumque distinctio sapiente, minima optio vero
-          impedit ratione vitae?
-        </p>
-      </div>
-    </header>
-    <main>
-      <section>
-        <form action="">
-          <label for="userInput" aria-label="true">
-            <input
-              type="text"
-              placeholder="Type an ingredient ex:Lemon"
-              id="userInput"
-            />
-          </label>
-          <div>
-            <input type="submit" />
-          </div>
-        </form>
-      </section>
-      <section>
-        <div class="randomLuckyText">
-          <p>Or 'Select' this feeling lucky button to get a random drink</p>
-          <button>Feeling lucky!</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cocktail Curator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="wrapper description">
+      <h1>Cocktail Curator</h1>
+      <p>
+        Cocktail Curator! Your one stop shop for new delectable cocktail recipes. Use the search bar below to search for cocktail recipes based on a specific ingredient. Once your cocktails have been served click on any image to see how you can make the drink. OR use the "Feeling Lucky" button to get a random drink!
+      </p>
+    </div>
+  </header>
+  <main class="wrapper">
+    <section class="firstSection">
+      <form action="">
+        <label for="userInput" aria-label="Type an ingredient example: Lemon">
+          <input type="text" placeholder="Type an ingredient ex. Lemon" id="userInput"  autofocus/>
+        </label>
+        <div>
+          <input type="submit" />
         </div>
-        <div class="randomLuckyContainer"></div>
-      </section>
-      <section>
-        <div class="galleryDrinksContainer"></div>
-        <div class="nonDisplay notFoundMessageContainer">
-        </div>
-      </section>
-      <!-- Ingredients and instructions section -->
-      <section>
-        <ul class="ingredientsContainer"></ul>
-        <div class="instructionsContainer"></div>
-      </section>
-    </main>
-    <footer>
-      <div>
-        <p>Copyright©2020 Cocktail Curators</p>
-        <p><a href="https://junocollege.com">Created at Juno College</a></p>
+      </form>
+    </section>
+    <section class="randomButtonSection">
+      <div class="randomLuckyText">
+        <p>Or 'Select' this feeling lucky button to get a random drink</p>
+        <button>Feeling lucky!</button>
       </div>
-    </footer>
-    <script
-      src="https://code.jquery.com/jquery-3.4.0.min.js"
-      integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/script.js"></script>
-  </body>
+      <div class="randomLuckyContainer"></div>
+    </section>
+    <section class="gallerySection"> 
+      <div class="galleryDrinksContainer"></div>
+      <div class="nonDisplay notFoundMessageContainer">
+      </div>
+    </section>
+    <!-- Ingredients and instructions section -->
+    <section>
+      <ul class="ingredientsContainer"></ul>
+      <div class="instructionsContainer"></div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrapper">
+      <p>Copyright©2020 Cocktail Curators</p>
+      <p><a href="https://junocollege.com">Created at Juno College</a></p>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  <script src="scripts/script.js"></script>
+</body>
+
 </html>
