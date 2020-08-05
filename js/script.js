@@ -8,8 +8,10 @@ $("form").on("submit", (event) => {
   cocktailApp.clearPreviousSearchResult();
   cocktailApp.clearSearchError();
   cocktailApp.performSearch();
+  $(".galleryDrinksContainer").empty();
 });
 
+cocktailApp.clearDrinksContainer = function () {};
 cocktailApp.performSearch = function () {
   const userSelectedIngredient = $("#userInput").val();
   $.ajax({
